@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+
         Product product1 = new Product("апельсин", 100, 3);
         Product product2 = new Product("мандарин", 200, 4);
         Product product3 = new Product("дыня", 300, 1);
