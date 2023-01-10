@@ -1,14 +1,16 @@
 import java.util.Objects;
+import java.util.Set;
 
 public class Sponsor {
     private final String name;
     private final int amount;
-public Set <Sponsor>();
 
-    public Sponsor(String name, int amount) {
+    private Set<Sponsor> sponsors;
+    public Sponsor (String name, int amount) {
         this.name = name;
         this.amount = amount;
     }
+
 
     public String getName() {
         return name;

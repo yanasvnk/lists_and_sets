@@ -18,10 +18,7 @@ public class ProductList {
     }
 
     public void remove(Product product) {
-        if (products.contains(product)) {
-            throw new IllegalArgumentException("Такой продукт уже есть!");
-        }
-        products.add(product);
+        products.remove(product);
     }
 
 }
