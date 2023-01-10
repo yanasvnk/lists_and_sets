@@ -18,9 +18,6 @@ public class Main {
         System.out.println(product1.equals(product4));
 
 
-        //ProductList.add(product1);???? Как проверить функцию на добавление? Не работает.
-        //ProductList.remove(product4);???? Как проверить функцию на удаление? Не работает.
-
         ProductList productList = new ProductList(new HashSet<>());
         productList.add(product1);
         productList.add(product2);
@@ -40,9 +37,6 @@ public class Main {
         productList3.add(product2);
         productList3.add(product3);
 
-        //Recipe recipe1 = new Recipe("Фруктовый салат", product2, 1000);??? Как добавить больше продуктов во вторую графу ингридиентов? Не работает.
-        //Recipe recipe2 = new Recipe("Другой фруктовый салат", products1, 2000);??? Как добавить больше продуктов во вторую графу ингридиентов? Не работает.
-        //Как проверить функции на удаление и добавление рецептов? Не работает.
 
         Recipe recipe1 = new Recipe("Фруктовый салат", productList, 1000);
         Recipe recipe2 = new Recipe("Другой фруктовый салат", productList2, 2000);
@@ -55,70 +49,61 @@ public class Main {
         System.out.println(recipes);
 
 
-        //List<Product> productsList = List.of( product1, product4, product3); Это List. НЕ РАБОТАЕТ. Как рабочий Set с элементами в Main написать?
-        //Напишите итоговый код по всем моим вопросам, пожалуйста.
-        // products.add(product2); НЕ РАБОТАЕТ
-        // products.remove(product3); НЕ РАБОТАЕТ
+        Car car = new Car("Toyota", "B-901", 45, 3, 7, 250, TypeOfBody.SEDAN);
+
+        Lorry lorry = new Lorry("Ленинград", "SD-678", 90, 4, 9, 145, LiftCapacity.N2);
+
+        Bus bus = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
+        Bus bus1 = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
+
+        DriverB driverB = new DriverB("Иванов Иван", true, 4);
+        Sponsor lukoil = new Sponsor("Лукойл", 2000000);
+        Sponsor michelin = new Sponsor("Michelin", 3000000);
 
 
-        //Car car = new Car("Toyota", "B-901", 45, 3, 7, 250, TypeOfBody.SEDAN);
+        car.addDriver(new DriverB("Иванов Иван", true, 4));
+        car.addMechanic(new Mechanic<Car>("Пётр ", "Петров ", "Механики России "));
+        car.addSponsor(lukoil, michelin);
 
-        //Lorry lorry = new Lorry("Ленинград", "SD-678", 90, 4, 9, 145, LiftCapacity.N2);
+        lorry.addDriver(new DriverC("Cтепанов Степан", true, 10));
+        lorry.addMechanic(new Mechanic<Lorry>("Сергей ", "Сергеев  ", "Механики России"));
+        lorry.addSponsor(michelin);
 
-        //Bus bus = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
-       // Bus bus1 = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
+        bus.addDriver(new DriverD("Егоров Егор", true, 19));
+        bus.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
+        bus.addSponsor(lukoil);
 
-        //DriverB driverB = new DriverB("Иванов Иван", true, 4);
-
-        //Sponsor lukoil = new Sponsor("Лукойл", 2000000);
-       // Sponsor michelin = new Sponsor("Michelin", 3000000);
-
-
-       // car.addDriver(new DriverB("Иванов Иван", true, 4));
-       // car.addMechanic(new Mechanic<Car>("Пётр ", "Петров ", "Механики России "));
-        //car.addSponsor(lukoil, michelin);
-
-        //lorry.addDriver(new DriverC("Cтепанов Степан", true, 10));
-        //lorry.addMechanic(new Mechanic<Lorry>("Сергей ", "Сергеев  ", "Механики России"));
-       // lorry.addSponsor(michelin);
-
-       // bus.addDriver(new DriverD("Егоров Егор", true, 19));
-        //bus.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
-       // bus.addSponsor(lukoil);
-
-        //bus1.addDriver(new DriverD("Егоров Егор", true, 19));
-       // bus1.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
-       // bus1.addSponsor(lukoil);
+        bus1.addDriver(new DriverD("Егоров Егор", true, 19));
+        bus1.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
+        bus1.addSponsor(lukoil);
 
 
-
-       // List<Transport> transports = List.of(car, lorry, bus); // КАК НАПИСАТЬ SET с элементами вместо LIST??? При замене LIST на SET в коде всё горит красным.
-        //ЧТО НЕ ТАК? Напишите верный полный работающий код, пож.
+        List<Transport> transports = List.of(car, lorry, bus);
 
 
-
-        //for (Transport transport : transports) {
-           // printInfo(transport);
+        for (Transport transport : transports) {
+            printInfo(transport);
         }
 
 
+        private static void printInfo (Transport transport){
+            System.out.println("Информация по транспорту " + transport.getBrand() + " " + transport.getModel());
 
-    //private static void printInfo(Transport transport) {
-       // System.out.println("Информация по транспорту " + transport.getBrand() + " " + transport.getModel());
-
-        //System.out.println("Водители: ");
-        //for (Driver driver : transport.getDrivers()) {
-          //  System.out.println(driver.getName());
-       // }
-       // System.out.println("Спонсоры: ");
-       // for (Sponsor sponsor : transport.getSponsors()) {
-        //    System.out.println(sponsor.getName());
-        //}
-       // System.out.println("Механики: ");
-        //for (Mechanic mechanic : transport.getMechanics()) {
-         //   System.out.println(mechanic.getName() + mechanic.getSurname() + mechanic.getCompany());
+            System.out.println("Водители: ");
+            for (Driver driver : transport.getDrivers()) {
+                System.out.println(driver.getName());
+            }
+            System.out.println("Спонсоры: ");
+            for (Sponsor sponsor : transport.getSponsors()) {
+                System.out.println(sponsor.getName());
+            }
+            System.out.println("Механики: ");
+            for (Mechanic mechanic : transport.getMechanics()) {
+                System.out.println(mechanic.getName() + mechanic.getSurname() + mechanic.getCompany());
+            }
         }
-
+    }
+}
 
 
 
