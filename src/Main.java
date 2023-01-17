@@ -19,7 +19,6 @@ public class Main {
         System.out.println(product4.equals(product3));
         System.out.println(product1.equals(product4));
 
-
         ProductList productList = new ProductList(new HashSet<>());
         productList.add(product1);
         productList.add(product2);
