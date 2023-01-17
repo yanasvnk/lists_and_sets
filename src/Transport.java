@@ -1,14 +1,11 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public abstract class Transport {
     private String brand;
     private String model;
     private int engineCapacity;
     private final List<Driver> drivers = new ArrayList<>();
-    private final Set <Mechanic<?>> mechanics = new HashSet<>();
+    private final Set<Mechanic<?>> mechanics = new HashSet<>();
     private final Set <Sponsor> sponsors = new HashSet<>();
 
     public Transport (String brand, String model, int engineCapacity ) {

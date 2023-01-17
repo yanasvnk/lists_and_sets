@@ -5,6 +5,7 @@ import java.util.Set;
 public class ProductList {
 
     private Set<Product> products;
+
     public ProductList(Set<Product> products) {
         this.products = products;
     }
@@ -21,4 +22,8 @@ public class ProductList {
         products.remove(product);
     }
 
+    @Override
+    public String toString() {
+        return products.toString();
+    }
 }

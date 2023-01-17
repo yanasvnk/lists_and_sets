@@ -47,4 +47,9 @@ public class Recipe {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return "Название блюда - " + getName()+ ", список продуктов - " + getProductList() + ", общая стоимость - " + getTotalCoast() + ".";
+    }
 }

@@ -43,4 +43,9 @@ public class Mechanic<T extends Transport>{
     public int hashCode() {
         return Objects.hash(name, surname, company);
     }
+
+    @Override
+    public String toString() {
+        return "Имя механика - " + getName()+ ", фамилия - " + getSurname() + ", компания - " + getCompany() + ".";
+    }
 }

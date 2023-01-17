@@ -1,4 +1,6 @@
 
+
+
 import java.util.*;
 
 
@@ -25,7 +27,7 @@ public class Main {
         System.out.println(productList);
         productList.remove(product1);
         System.out.println(productList);
-        productList.add(product4);
+        //productList.add(product4);
         System.out.println(productList);
 
         ProductList productList2 = new ProductList(new HashSet<>());
@@ -45,7 +47,7 @@ public class Main {
         RecipeList recipes = new RecipeList(new HashSet<>());
         recipes.add(recipe1);
         recipes.add(recipe2);
-        recipes.add(recipe3);
+        //recipes.add(recipe3);
         System.out.println(recipes);
 
 
@@ -53,29 +55,29 @@ public class Main {
 
         Lorry lorry = new Lorry("Ленинград", "SD-678", 90, 4, 9, 145, LiftCapacity.N2);
 
-        Bus bus = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
-        Bus bus1 = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE, new HashSet<>());
+        Bus bus = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE);
+        Bus bus1 = new Bus("Жигули", "NM-45", 60, 5, 10, 130, Capacity.AVERAGE);
 
-        DriverB driverB = new DriverB("Иванов Иван", true, 4);
+        DriverB<Car> driverB = new DriverB<>("Иванов Иван", true, 4);
         Sponsor lukoil = new Sponsor("Лукойл", 2000000);
         Sponsor michelin = new Sponsor("Michelin", 3000000);
 
 
-        car.addDriver(new DriverB("Иванов Иван", true, 4));
+        car.addDriver(new DriverB<>("Иванов Иван", true, 4));
         car.addMechanic(new Mechanic<Car>("Пётр ", "Петров ", "Механики России "));
         car.addSponsor(lukoil, michelin);
 
-        lorry.addDriver(new DriverC("Cтепанов Степан", true, 10));
+        lorry.addDriver(new DriverC<>("Cтепанов Степан", true, 10));
         lorry.addMechanic(new Mechanic<Lorry>("Сергей ", "Сергеев  ", "Механики России"));
         lorry.addSponsor(michelin);
 
-        bus.addDriver(new DriverD("Егоров Егор", true, 19));
+        bus.addDriver(new DriverD<>("Егоров Егор", true, 19));
         bus.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
         bus.addSponsor(lukoil);
 
-        bus1.addDriver(new DriverD("Егоров Егор", true, 19));
-        bus1.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
-        bus1.addSponsor(lukoil);
+        bus.addDriver(new DriverD<>("Егоров Егор", true, 19));
+        bus.addMechanic(new Mechanic<Bus>("Алексей  ", "Алексеев ", "Механики России "));
+        bus.addSponsor(lukoil);
 
 
         List<Transport> transports = List.of(car, lorry, bus);
@@ -83,28 +85,72 @@ public class Main {
 
         for (Transport transport : transports) {
             printInfo(transport);
-        }
 
 
-        private static void printInfo (Transport transport){
-            System.out.println("Информация по транспорту " + transport.getBrand() + " " + transport.getModel());
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-            System.out.println("Водители: ");
-            for (Driver driver : transport.getDrivers()) {
-                System.out.println(driver.getName());
-            }
-            System.out.println("Спонсоры: ");
-            for (Sponsor sponsor : transport.getSponsors()) {
-                System.out.println(sponsor.getName());
-            }
-            System.out.println("Механики: ");
-            for (Mechanic mechanic : transport.getMechanics()) {
-                System.out.println(mechanic.getName() + mechanic.getSurname() + mechanic.getCompany());
-            }
+
+            Map<Transport, Mechanic> map = new HashMap<>();
+            map.put(car, new Mechanic<Car>("Пётр", "Петров", "Механики России"));
+            map.put(lorry, new Mechanic<Lorry>("Сергей", "Сергеев", "Механики России"));
+            map.put(bus, new Mechanic<Bus>("Алексей ", "Алексеев", "Механики России"));
+            map.put(bus1, new Mechanic<Bus>("Алексей", "Алексеев", "Механики России"));
+
+
+            String mechanicCar = String.valueOf(map.get(car));
+            System.out.println(String.valueOf(map.get(car)));
+
+            String mechanicLorry = String.valueOf(map.get(lorry));
+            System.out.println(String.valueOf(map.get(lorry)));
+
+            String mechanicBus = String.valueOf(map.get(bus));
+            System.out.println(String.valueOf(map.get(bus)));
+
+            String mechanicBus1 = String.valueOf(map.get(bus1));
+            System.out.println(String.valueOf(map.get(bus1)));
         }
     }
 
+
+    private static void printInfo(Transport transport) {
+        System.out.println("Информация по транспорту " + transport.getBrand() + " " + transport.getModel());
+
+        System.out.println("Водители: ");
+        for (Driver driver : transport.getDrivers()) {
+            System.out.println(driver.getName());
+        }
+        System.out.println("Спонсоры: ");
+        for (Sponsor sponsor : transport.getSponsors()) {
+            System.out.println(sponsor.getName());
+        }
+        System.out.println("Механики: ");
+        for (Mechanic<?> mechanic : transport.getMechanics()) {
+            System.out.println(mechanic.getName() + mechanic.getSurname() + mechanic.getCompany());
+        }
+    }
+
+    public final boolean equals(Object o) {
+        if (!(o instanceof Map.Entry))
+            return false;
+        Map.Entry<Transport, Mechanic> e = (Map.Entry<Transport, Mechanic>) o;
+        Object k1 = ((Map.Entry) o).getKey();
+        Object k2 = e.getKey();
+        if (Objects.equals(getValue(), e.getValue())) {
+            Object v1 = getValue();
+            Object v2 = e.getValue();
+            if (Objects.equals(v1, v2))
+                return true;
+        }
+        return false;
+    }
+
+    private Object getValue() {
+        return String.valueOf(Map.of());
+    }
 }
+
+
+
 
 
 
