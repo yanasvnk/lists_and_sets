@@ -83,7 +83,7 @@ public class Main {
 
 
         for (Transport transport : transports) {
-            printInfo(transport);
+            printInfo(transport);}
 
 
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -107,8 +107,10 @@ public class Main {
 
             String mechanicBus1 = String.valueOf(map.get(bus1));
             System.out.println(String.valueOf(map.get(bus1)));
+
+        System.out.println(map);
         }
-    }
+
 
 
     private static void printInfo(Transport transport) {
