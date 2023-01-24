@@ -89,24 +89,26 @@ public class Main {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 
-            Map<Transport, Mechanic> map = new HashMap<>();
+            Map<Transport, Mechanic<?>> map = new HashMap<>();
             map.put(car, new Mechanic<Car>("Пётр", "Петров", "Механики России"));
             map.put(lorry, new Mechanic<Lorry>("Сергей", "Сергеев", "Механики России"));
             map.put(bus, new Mechanic<Bus>("Алексей ", "Алексеев", "Механики России"));
             map.put(bus1, new Mechanic<Bus>("Алексей", "Алексеев", "Механики России"));
 
+            System.out.println("Содержимое мапы: " + map); // заметь, в карте 3 элемента, а не 4. Потому что bus и bus1 - одинаковые объекты (по equals у Transport)
+            System.out.println("Размер мапы: " + map.size()); // т.е. в мапе нет одинаковых машин - все уникальны
 
             String mechanicCar = String.valueOf(map.get(car));
-            System.out.println(String.valueOf(map.get(car)));
+            System.out.println(map.get(car));
 
             String mechanicLorry = String.valueOf(map.get(lorry));
-            System.out.println(String.valueOf(map.get(lorry)));
+            System.out.println(map.get(lorry));
 
             String mechanicBus = String.valueOf(map.get(bus));
-            System.out.println(String.valueOf(map.get(bus)));
+            System.out.println(map.get(bus));
 
             String mechanicBus1 = String.valueOf(map.get(bus1));
-            System.out.println(String.valueOf(map.get(bus1)));
+            System.out.println(map.get(bus1)); // т.к. ключи bus и bus1 одинаковые, то мы достаём одно и то же значение этого ключа
 
         System.out.println(map);
         }
@@ -130,31 +132,4 @@ public class Main {
         }
     }
 
-    public final boolean equals(Object o) {
-        if (!(o instanceof Map.Entry))
-            return false;
-        Map.Entry<Transport, Mechanic> e = (Map.Entry<Transport, Mechanic>) o;
-        Object k1 = ((Map.Entry) o).getKey();
-        Object k2 = e.getKey();
-        if (Objects.equals(getValue(), e.getValue())) {
-            Object v1 = getValue();
-            Object v2 = e.getValue();
-            if (Objects.equals(v1, v2))
-                return true;
-        }
-        return false;
-    }
-
-    private Object getValue() {
-        return String.valueOf(Map.of());
-    }
 }
-
-
-
-
-
-
-
-
-

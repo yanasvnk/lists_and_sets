@@ -78,4 +78,23 @@ public abstract class Transport {
     public Set <Sponsor> getSponsors() {
         return sponsors;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Transport transport = (Transport) o;
+        return engineCapacity == transport.engineCapacity && Objects.equals(brand,
+            transport.brand) && Objects.equals(model, transport.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineCapacity);
+    }
+
 }
